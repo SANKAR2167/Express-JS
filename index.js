@@ -29,3 +29,5 @@ app.get("/", function (request, response) {
 app.use('/movies', moviesRouter)
 
 app.listen(PORT, () => console.log(`The server started in: ${PORT} ✨✨`)); // start the app
+
+export {client};

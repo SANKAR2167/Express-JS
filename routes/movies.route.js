@@ -1,8 +1,9 @@
 import express from "express";
+import {client} from '../index.js';
 
 const router = express.Router();
 
-router.get("/movies", async function (request, response) {
+router.get("/", async function (request, response) {
 
     if (request.query.rating) {
         request.query.rating = +request.query.rating;
@@ -14,7 +15,7 @@ router.get("/movies", async function (request, response) {
     response.send(movies);
 });
 
-router.get("/movies/:id", async function (request, response) {
+router.get("/:id", async function (request, response) {
     const { id } = request.params;
     // console.log(request.params, id);
     // const movie = movies.find((mv) => mv.id === id);
@@ -23,14 +24,14 @@ router.get("/movies/:id", async function (request, response) {
     movie ? response.send(movie) : response.status(404).send({ message: 'movie not found' });
 });
 
-router.post("/movies", async function (request, response) {
+router.post("/", async function (request, response) {
     const data = request.body;
     console.log(data);
     const result = await client.db('local').collection('movies').insertMany(data);
     response.send(result);
 });
 
-router.delete("/movies/:id", async function (request, response) {
+router.delete("/:id", async function (request, response) {
     const { id } = request.params;
     // console.log(request.params, id);
     // const movie = movies.find((mv) => mv.id === id);
@@ -39,7 +40,7 @@ router.delete("/movies/:id", async function (request, response) {
     result.deletedCount > 0 ? response.send({ message: "movie deleted successfully" }) : response.status(404).send({ message: 'movie not found' });
 });
 
-router.put("/movies/:id", async function (request, response) {
+router.put("/:id", async function (request, response) {
     const { id } = request.params;
     const data = request.body;
     const result = await client
