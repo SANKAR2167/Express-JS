@@ -3,6 +3,8 @@ import express from "express";
 import { MongoClient } from "mongodb";
 import * as dotenv from 'dotenv';
 import moviesRouter from './routes/movies.route.js';
+import userRouter from './routes/users.route.js';
+import bcrypt from 'bcrypt';
 
 dotenv.config();
 
@@ -26,7 +28,8 @@ app.get("/", function (request, response) {
 });
 
 // Route Setup
-app.use('/movies', moviesRouter)
+app.use('/movies', moviesRouter);
+app.use('/user', userRouter)
 
 app.listen(PORT, () => console.log(`The server started in: ${PORT} ✨✨`)); // start the app
 
