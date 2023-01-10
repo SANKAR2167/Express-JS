@@ -22,7 +22,7 @@ export async function getMovieById(id) {
     return await client
         .db('local')
         .collection('movies')
-        .findOne({ id: id });
+        .findOne({ _id:id });
 }
 export async function getMovies(request) {
     return await client
