@@ -29,7 +29,7 @@ app.get("/", function (request, response) {
 
 // Route Setup
 app.use('/movies', moviesRouter);
-app.use('/user', userRouter)
+app.use('/user', userRouter);
 
 app.listen(PORT, () => console.log(`The server started in: ${PORT} ✨✨`)); // start the app
 
